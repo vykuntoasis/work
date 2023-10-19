@@ -1,0 +1,160 @@
+<edmx:Edmx xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData" Version="1.0">
+<edmx:DataServices m:DataServiceVersion="2.0">
+<Schema xmlns="http://schemas.microsoft.com/ado/2008/09/edm" Namespace="ZAS_MSTR_VER_SRV" xml:lang="en" sap:schema-version="1">
+<Annotation xmlns="http://docs.oasis-open.org/odata/ns/edm" Term="Core.SchemaVersion" String="1.0.0"/>
+<EntityType Name="RPMaterialMaster" sap:content-version="1">
+<Key>
+<PropertyRef Name="RelPkg"/>
+<PropertyRef Name="RPDesc"/>
+<PropertyRef Name="Product"/>
+</Key>
+<Property Name="RelPkg" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Release Package" sap:creatable="false" sap:filterable="false"/>
+<Property Name="RPDesc" Type="Edm.String" Nullable="false" MaxLength="40" sap:filter-restriction="single-value" sap:semantics="fixed-values" sap:unicode="false" sap:label="Release Package Name" sap:creatable="false" sap:value-list="fixed-values"/>
+<Property Name="Product" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Material" sap:creatable="false" sap:updatable="false"/>
+<Property Name="MaterialDescr" Type="Edm.String" MaxLength="40" sap:unicode="false" sap:label="Item Descr." sap:filterable="false"/>
+<Property Name="Suite" Type="Edm.String" MaxLength="40" sap:unicode="false" sap:label="Portfolio" sap:filterable="false"/>
+<Property Name="SolutionFamily" Type="Edm.String" MaxLength="40" sap:unicode="false" sap:label="Suite" sap:filterable="false"/>
+<Property Name="Solution" Type="Edm.String" MaxLength="40" sap:unicode="false" sap:label="Product" sap:filterable="false"/>
+<Property Name="Capability" Type="Edm.String" MaxLength="40" sap:unicode="false" sap:label="Capability" sap:filterable="false"/>
+</EntityType>
+<EntityType Name="RPVersionMaster" sap:content-version="1">
+<Key>
+<PropertyRef Name="RelPkg"/>
+<PropertyRef Name="RPDesc"/>
+<PropertyRef Name="RPVersion"/>
+</Key>
+<Property Name="RelPkg" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Release Package" sap:filterable="false"/>
+<Property Name="RPDesc" Type="Edm.String" Nullable="false" MaxLength="40" sap:filter-restriction="single-value" sap:semantics="fixed-values" sap:unicode="false" sap:label="Release Package Name" sap:value-list="fixed-values"/>
+<Property Name="RPVersion" Type="Edm.String" Nullable="false" MaxLength="70" sap:unicode="false" sap:label="RP Version" sap:filterable="false"/>
+<Property Name="ServFlag" Type="Edm.Boolean" sap:unicode="false" sap:label="Serviceable Flag" sap:filterable="false"/>
+<Property Name="NRank" Type="Edm.String" MaxLength="4" sap:unicode="false" sap:label="N Rank(External)" sap:filterable="false"/>
+<Property Name="GADate" Type="Edm.DateTime" Precision="7" sap:display-format="Date" sap:unicode="false" sap:label="GA Date" sap:filterable="false"/>
+<Property Name="CreatedBy" Type="Edm.String" MaxLength="80" sap:unicode="false" sap:label="Full Name" sap:filterable="false"/>
+<Property Name="CreatedOn" Type="Edm.DateTime" Precision="7" sap:display-format="Date" sap:unicode="false" sap:label="Created On" sap:filterable="false"/>
+<Property Name="CreatedAt" Type="Edm.Time" Precision="0" sap:unicode="false" sap:label="Created at" sap:filterable="false"/>
+<Property Name="ChangedBy" Type="Edm.String" MaxLength="80" sap:unicode="false" sap:label="Full Name" sap:filterable="false"/>
+<Property Name="ChangedOn" Type="Edm.DateTime" Precision="7" sap:display-format="Date" sap:unicode="false" sap:label="Changed on" sap:filterable="false"/>
+<Property Name="ChangedAt" Type="Edm.Time" Precision="0" sap:unicode="false" sap:label="Changed at" sap:filterable="false"/>
+</EntityType>
+<EntityType Name="RPName" sap:content-version="1">
+<Key>
+<PropertyRef Name="RPDesc"/>
+</Key>
+<Property Name="RPDesc" Type="Edm.String" Nullable="false" MaxLength="40" sap:semantics="fixed-values" sap:unicode="false" sap:label="RP Description" sap:creatable="false" sap:value-list="fixed-values"/>
+</EntityType>
+<EntityType Name="AssignedProductSH" sap:content-version="1">
+<Key>
+<PropertyRef Name="Matnr"/>
+</Key>
+<Property Name="Matnr" Type="Edm.String" Nullable="false" MaxLength="18" sap:unicode="false" sap:label="Material" sap:creatable="false"/>
+<Property Name="Maktx" Type="Edm.String" MaxLength="40" sap:unicode="false" sap:label="Description"/>
+</EntityType>
+<EntityType Name="UnAssignedProductSH" sap:content-version="1">
+<Key>
+<PropertyRef Name="Matnr"/>
+</Key>
+<Property Name="Matnr" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Material" sap:creatable="false" sap:updatable="false"/>
+<Property Name="Maktx" Type="Edm.String" MaxLength="40" sap:unicode="false" sap:label="Description"/>
+</EntityType>
+<EntityType Name="ReleasePkgVersionData" sap:content-version="1">
+<Key>
+<PropertyRef Name="RelPkgName"/>
+<PropertyRef Name="Versions"/>
+</Key>
+<Property Name="RelPkgName" Type="Edm.String" Nullable="false" MaxLength="40" sap:filter-restriction="single-value" sap:semantics="fixed-values" sap:unicode="false" sap:label="Keyword" sap:value-list="fixed-values"/>
+<Property Name="Versions" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="Characteristic"/>
+<Property Name="Serviceable" Type="Edm.String" MaxLength="1" sap:unicode="false" sap:label="Single-Character Flag"/>
+<Property Name="Class" Type="Edm.String" Nullable="false" MaxLength="18" sap:unicode="false" sap:label="Class"/>
+</EntityType>
+<EntityType Name="MatMasRelPkgData" sap:content-version="1">
+<Key>
+<PropertyRef Name="RelPkgName"/>
+<PropertyRef Name="Class"/>
+<PropertyRef Name="Product"/>
+</Key>
+<Property Name="RelPkgName" Type="Edm.String" Nullable="false" MaxLength="40" sap:filter-restriction="single-value" sap:semantics="fixed-values" sap:unicode="false" sap:label="Keyword" sap:creatable="false" sap:value-list="fixed-values"/>
+<Property Name="Class" Type="Edm.String" Nullable="false" MaxLength="18" sap:unicode="false" sap:label="Class" sap:creatable="false" sap:updatable="false"/>
+<Property Name="Product" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Material" sap:creatable="false" sap:updatable="false"/>
+<Property Name="MaterialDescr" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Item Descr."/>
+<Property Name="Suite" Type="Edm.String" MaxLength="40" sap:unicode="false" sap:label="Description"/>
+<Property Name="SolutionFamily" Type="Edm.String" MaxLength="40" sap:unicode="false" sap:label="Description"/>
+<Property Name="Solution" Type="Edm.String" MaxLength="40" sap:unicode="false" sap:label="Description"/>
+<Property Name="Capability" Type="Edm.String" MaxLength="40" sap:unicode="false" sap:label="Description"/>
+</EntityType>
+<EntityType Name="ReleasePkgData" sap:content-version="1">
+<Key>
+<PropertyRef Name="ClassDesc"/>
+</Key>
+<Property Name="ClassDesc" Type="Edm.String" Nullable="false" MaxLength="40" sap:semantics="fixed-values" sap:unicode="false" sap:label="Keyword" sap:filterable="false" sap:value-list="fixed-values"/>
+</EntityType>
+<EntityType Name="Status" sap:content-version="1">
+<Key>
+<PropertyRef Name="Identifier"/>
+<PropertyRef Name="Success"/>
+</Key>
+<Property Name="Identifier" Type="Edm.Byte" Nullable="false" sap:unicode="false" sap:label="Int." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+<Property Name="Success" Type="Edm.Boolean" Nullable="false" sap:unicode="false" sap:label="TRUE" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+<Property Name="Message" Type="Edm.String" Nullable="false" MaxLength="256" sap:unicode="false" sap:label="char256" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+</EntityType>
+<EntityContainer Name="ZAS_MSTR_VER_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx">
+<EntitySet Name="RPMaterialMasterSet" EntityType="ZAS_MSTR_VER_SRV.RPMaterialMaster" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+<EntitySet Name="RPVersionMasterSet" EntityType="ZAS_MSTR_VER_SRV.RPVersionMaster" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+<EntitySet Name="RPNameSet" EntityType="ZAS_MSTR_VER_SRV.RPName" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:searchable="true" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+<EntitySet Name="AssignedProductSHSet" EntityType="ZAS_MSTR_VER_SRV.AssignedProductSH" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:searchable="true" sap:pageable="false" sap:content-version="1"/>
+<EntitySet Name="UnAssignedProductSHSet" EntityType="ZAS_MSTR_VER_SRV.UnAssignedProductSH" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:searchable="true" sap:pageable="false" sap:content-version="1"/>
+<EntitySet Name="ReleasePkgVersionDataSet" EntityType="ZAS_MSTR_VER_SRV.ReleasePkgVersionData" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+<EntitySet Name="MatMasRelPkgDataSet" EntityType="ZAS_MSTR_VER_SRV.MatMasRelPkgData" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+<EntitySet Name="ReleasePkgDataSet" EntityType="ZAS_MSTR_VER_SRV.ReleasePkgData" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+<EntitySet Name="StatusSet" EntityType="ZAS_MSTR_VER_SRV.Status" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+<FunctionImport Name="AddVersionsBetween" ReturnType="ZAS_MSTR_VER_SRV.Status" EntitySet="StatusSet" m:HttpMethod="POST" sap:label="Add Versions Between" sap:action-for="ZAS_MSTR_VER_SRV.RPVersionMaster">
+<Parameter Name="NRank" Type="Edm.String" Mode="In" MaxLength="4" sap:label="N Rank(External)"/>
+<Parameter Name="RPDesc" Type="Edm.String" Mode="In" MaxLength="40" sap:label="RP Description"/>
+<Parameter Name="RPVersion" Type="Edm.String" Mode="In" MaxLength="30" sap:label="RP Version"/>
+<Parameter Name="ServFlag" Type="Edm.String" Mode="In" MaxLength="1" sap:label="Serviceable Flag"/>
+<Parameter Name="GADate" Type="Edm.DateTime" Mode="In" Precision="0" sap:label="GA Date"/>
+</FunctionImport>
+<FunctionImport Name="AddVersionsExisting" ReturnType="ZAS_MSTR_VER_SRV.Status" EntitySet="StatusSet" m:HttpMethod="POST" sap:label="Add Versions Existing" sap:action-for="ZAS_MSTR_VER_SRV.RPVersionMaster">
+<Parameter Name="RPDesc" Type="Edm.String" Mode="In" MaxLength="40" sap:label="RP Description"/>
+<Parameter Name="RPVersion" Type="Edm.String" Mode="In" MaxLength="30" sap:label="RP Version"/>
+<Parameter Name="ServFlag" Type="Edm.String" Mode="In" MaxLength="1" sap:label="Serviceable Flag"/>
+<Parameter Name="GADate" Type="Edm.DateTime" Mode="In" Precision="0" sap:label="GA Date"/>
+</FunctionImport>
+<FunctionImport Name="AddVersionsNew" ReturnType="ZAS_MSTR_VER_SRV.Status" EntitySet="StatusSet" m:HttpMethod="POST" sap:label="Add Versions New" sap:action-for="ZAS_MSTR_VER_SRV.RPVersionMaster">
+<Parameter Name="GADate" Type="Edm.DateTime" Mode="In" Precision="0" sap:label="GA Date"/>
+<Parameter Name="ServFlag" Type="Edm.String" Mode="In" MaxLength="1" sap:label="Serviceable Flag"/>
+<Parameter Name="RPVersion" Type="Edm.String" Mode="In" MaxLength="30" sap:label="RP Version"/>
+<Parameter Name="RPDesc" Type="Edm.String" Mode="In" MaxLength="40" sap:label="RP Description"/>
+</FunctionImport>
+<FunctionImport Name="ReassignProduct" ReturnType="ZAS_MSTR_VER_SRV.Status" EntitySet="StatusSet" m:HttpMethod="POST" sap:label="Reassign Product" sap:action-for="ZAS_MSTR_VER_SRV.RPMaterialMaster">
+<Parameter Name="RPDescTo" Type="Edm.String" Mode="In" MaxLength="40" sap:label="Release Package Name"/>
+<Parameter Name="Product" Type="Edm.String" Mode="In" MaxLength="18" sap:label="Product"/>
+<Parameter Name="RPDescFrom" Type="Edm.String" Mode="In" MaxLength="40" sap:label="Release Package Name"/>
+</FunctionImport>
+<FunctionImport Name="InsertProduct" ReturnType="ZAS_MSTR_VER_SRV.Status" EntitySet="StatusSet" m:HttpMethod="POST" sap:label="Insert Product" sap:action-for="ZAS_MSTR_VER_SRV.RPMaterialMaster">
+<Parameter Name="Product" Type="Edm.String" Mode="In" MaxLength="18" sap:label="Product"/>
+<Parameter Name="RPDesc" Type="Edm.String" Mode="In" MaxLength="40" sap:label="Release Package Name"/>
+</FunctionImport>
+<FunctionImport Name="RemoveProduct" ReturnType="ZAS_MSTR_VER_SRV.Status" EntitySet="StatusSet" m:HttpMethod="POST" sap:label="Delete Product" sap:action-for="ZAS_MSTR_VER_SRV.RPMaterialMaster">
+<Parameter Name="Product" Type="Edm.String" Mode="In" MaxLength="18" sap:label="Product"/>
+<Parameter Name="RPDesc" Type="Edm.String" Mode="In" MaxLength="40" sap:label="Release Package Name"/>
+</FunctionImport>
+<FunctionImport Name="AddVersions" ReturnType="ZAS_MSTR_VER_SRV.Status" EntitySet="StatusSet" m:HttpMethod="POST" sap:label="Add Versions" sap:action-for="ZAS_MSTR_VER_SRV.ReleasePkgVersionData">
+<Parameter Name="RelPkgName" Type="Edm.String" Mode="In" MaxLength="40" sap:label="Release Package Name"/>
+<Parameter Name="Versions" Type="Edm.String" Mode="In" MaxLength="30" sap:label="Versions"/>
+<Parameter Name="Serviceable" Type="Edm.String" Mode="In" MaxLength="1" sap:label="Serviceable"/>
+</FunctionImport>
+<FunctionImport Name="SetServiceableFlag" ReturnType="ZAS_MSTR_VER_SRV.Status" EntitySet="StatusSet" m:HttpMethod="POST" sap:label="Set Serviceable Flag" sap:action-for="ZAS_MSTR_VER_SRV.RPVersionMaster">
+<Parameter Name="RPDesc" Type="Edm.String" Mode="In" MaxLength="40" sap:label="RP Description"/>
+<Parameter Name="RPVersion" Type="Edm.String" Mode="In" MaxLength="30" sap:label="RP Version"/>
+<Parameter Name="ServFlag" Type="Edm.String" Mode="In" MaxLength="1" sap:label="Serviceable Flag"/>
+</FunctionImport>
+<FunctionImport Name="CreateReleasePkg" ReturnType="ZAS_MSTR_VER_SRV.Status" EntitySet="StatusSet" m:HttpMethod="POST" sap:label="Create Release Package" sap:action-for="ZAS_MSTR_VER_SRV.RPMaterialMaster">
+<Parameter Name="BSegment" Type="Edm.String" Mode="In" MaxLength="15" sap:label="Business Segment"/>
+<Parameter Name="RPDesc" Type="Edm.String" Mode="In" MaxLength="40" sap:label="Release Package Name"/>
+</FunctionImport>
+</EntityContainer>
+<atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="self" href="http://stsrvr.mynetgear.com:8030/sap/opu/odata/sap/ZAS_MSTR_VER_SRV/$metadata"/>
+<atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="latest-version" href="http://stsrvr.mynetgear.com:8030/sap/opu/odata/sap/ZAS_MSTR_VER_SRV/$metadata"/>
+</Schema>
+</edmx:DataServices>
+</edmx:Edmx>
